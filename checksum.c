@@ -1,9 +1,9 @@
 /********************************/
-/* Program Name:                */
+/* Program Name: Fernanado Vega */
 /* Author:                      */
-/* Date:                        */
+/* Date: 02/16/2021             */
 /********************************/
-/* Description:                 */
+/* Description:checksum         */
 /* Validation Checks:           */
 /* Enhancements:                */
 /********************************/
@@ -18,8 +18,8 @@
 int main (int argc, char * argv[], char ** envp) {
 
   int count = 10;
-  int sum = 0;   
-  byte checksum; 
+  int sum = 0;
+  byte checksum;
   byte complement;
   byte header[10];
   int quotient;
@@ -27,18 +27,18 @@ int main (int argc, char * argv[], char ** envp) {
   int retval;
 
   retval = read(STDIN_FILENO,&header,10);
-  
- for (int c = 0; c < count; c++ ) 
+
+ for (int c = 0; c < count; c++ )
 	{
-  		if ( c == 5 ) 
+  		if ( c == 5 )
 		{
   			checksum = header[c];
   			header[c] = 0;
  		 }
  	 sum += header[c];
  	 }
-  quotient = (sum / (max_int + 1));            
-  remainder = (sum % (max_int + 1 ));  
+  quotient = (sum / (max_int + 1));
+  remainder = (sum % (max_int + 1 ));
   sum = quotient + remainder;
   complement = max_int - sum;
 
@@ -50,7 +50,7 @@ int main (int argc, char * argv[], char ** envp) {
 
   fprintf(stdout, "Stored Checksum: %d, Computed Checksum: %d\n", checksum, complement);
   if (checksum != complement ) {
-    fprintf(stderr, "Error Detected!\n"); 
+    fprintf(stderr, "Error Detected!\n");
     return 1;
   }
   return 0;
